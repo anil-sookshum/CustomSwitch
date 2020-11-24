@@ -3,24 +3,25 @@ library custom_switch;
 import 'package:flutter/material.dart';
 
 class CustomSwitch extends StatefulWidget {
-  final bool value;
-  final ValueChanged<bool> onChanged;
-  final Color activeColor;
-  final Color inactiveColor = Colors.grey;
-  final String activeText = 'On';
-  final String inactiveText = 'Off';
-  final Color activeTextColor = Colors.white70;
-  final Color inactiveTextColor = Colors.white70;
-
-  const CustomSwitch({
+  bool value;
+  ValueChanged<bool> onChanged;
+  Color activeColor;
+  Color inactiveColor;
+  String activeText = '';
+  String inactiveText = '';
+  Color activeTextColor = Colors.white70;
+  Color inactiveTextColor = Colors.white70;
+  Color radiusColor;
+  CustomSwitch({
     Key key, 
-    this.value, 
-    this.onChanged, 
-    this.activeColor, 
-    this.inactiveColor, 
+    @required this.value, 
+    @required this.onChanged, 
+    @required this.activeColor, 
+    @required this.inactiveColor, 
     this.activeText,
     this.inactiveText,
     this.activeTextColor,
+    @required this.radiusColor,
     this.inactiveTextColor})
       : super(key: key);
 
@@ -68,7 +69,9 @@ class _CustomSwitchState extends State<CustomSwitch>
                 borderRadius: BorderRadius.circular(20.0),
                 color: _circleAnimation.value == Alignment.centerLeft
                     ? widget.inactiveColor
-                    : widget.activeColor),
+                    : widget.activeColor,
+                    border: Border.all(width: 1, color: widget.radiusColor)
+              ),
             child: Padding(
               padding: const EdgeInsets.only(
                   top: 4.0, bottom: 4.0, right: 4.0, left: 4.0),
